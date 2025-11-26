@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">OJOvirtual</string>  <!-- ✅ NOMBRE DE TU APP -->
+
+    <!-- Mensajes de la app -->
+    <string name="welcome_message">Bienvenido al Asistente de Accesibilidad. Di \'Ayuda\' para escuchar las funciones.</string>
+    <string name="listening">Escuchando…</string>
+    <string name="processing">Procesando…</string>
+
+    <!-- Comandos -->
+    <string name="command_help">Ayuda</string>
+    <string name="command_time">¿Qué hora es?</string>
+    <string name="command_date">¿Qué fecha es hoy?</string>
+    <string name="command_battery">¿Cuánta batería tengo?</string>
+    <string name="command_detect">Ayuda a ver</string>
+    <string name="command_read_text">Lee esto</string>
+
+    <!-- Permisos -->
+    <string name="permission_camera">Necesitamos acceso a la cámara para detectar objetos</string>
+    <string name="permission_microphone">Necesitamos acceso al micrófono para reconocimiento de voz</string>
+    <string name="permissions_denied">Permisos denegados. La app no funcionará correctamente.</string>
+
+    <!-- Detección -->
+    <string name="object_detected">%1$s detectado</string>
+    <string name="object_distance">a %1$s metros</string>
+    <string name="no_objects">No se detectan objetos</string>
+
+    <!-- Errores -->
+    <string name="error_camera">Error al iniciar la cámara</string>
+    <string name="error_speech">Error en reconocimiento de voz</string>
+    <string name="error_tts">Error en síntesis de voz</string>
+</resources>

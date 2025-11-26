@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@color/background">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Asistente de Voz"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Animación de escucha -->
+    <ImageView
+        android:id="@+id/voice_animation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@android:drawable/ic_btn_speak_now"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
+        app:layout_constraintBottom_toTopOf="@id/voice_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/primary" />
+
+    <!-- Texto de voz reconocido -->
+
+    <!-- Lista de comandos -->
+    <TextView
+        android:id="@+id/voice_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@color/primary_light"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Di AYUDA para escuchar las funciones disponibles"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/commands_scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/commands_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/voice_text"
+        app:layout_constraintBottom_toTopOf="@id/start_voice_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comandos disponibles:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• ¿Qué hora es?\n• ¿Qué fecha es hoy?\n• ¿Cuánta batería tengo?\n• Ayuda a ver (activa cámara)\n• Lee esto (reconoce texto)\n• Busca [objeto]"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/text_secondary" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Botón principal -->
+    <Button
+        android:id="@+id/start_voice_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="124dp"
+        android:padding="16dp"
+        android:text="PRESIONA PARA HABLAR"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
