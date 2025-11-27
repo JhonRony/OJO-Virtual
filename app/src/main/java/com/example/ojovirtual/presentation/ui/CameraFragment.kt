@@ -89,7 +89,7 @@ class CameraFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // ✅ CAPTURAR AL TOCAR LA PANTALLA
+        // CAPTURAR AL TOCAR LA PANTALLA
         binding.cameraPreview.setOnClickListener {
             captureAndDetectObjects()
         }
@@ -103,7 +103,7 @@ class CameraFragment : Fragment() {
         }
     }
 
-    // ✅ NUEVO MÉTODO: Capturar y detectar objetos
+    // MÉTODO: Capturar y detectar objetos
     private fun captureAndDetectObjects() {
         binding.detectionText.text = "📸 Capturando..."
         viewModel.sensorHelper.vibrate(100)
@@ -163,7 +163,7 @@ class CameraFragment : Fragment() {
         )
     }
 
-    // ✅ NUEVO MÉTODO: Resetear a estado inicial después de un tiempo
+    // MÉTODO: Resetear a estado inicial después de un tiempo
     private fun resetToIdleAfterDelay() {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(3000) // 3 segundos
@@ -229,7 +229,7 @@ class CameraFragment : Fragment() {
             viewModel.detectionState.collect { state ->
                 when (state) {
                     is DetectionState.Idle -> {
-                        // ✅ Solo resetear si no hay otro estado activo
+                        // Resetear si no hay otro estado activo
                         if (viewModel.textRecognitionState.value is TextRecognitionState.Idle) {
                             binding.detectionText.text = "👆 Toca la pantalla para capturar"
                             binding.distanceText.visibility = View.GONE
@@ -247,7 +247,7 @@ class CameraFragment : Fragment() {
                             binding.distanceText.text = "📏 ${mainObject.distance}"
                             binding.distanceText.visibility = View.VISIBLE
 
-                            // ✅ Resetear después de mostrar resultado
+                            // Resetear después de mostrar resultado
                             resetToIdleAfterDelay()
                         } else {
                             binding.detectionText.text = "❌ No se detectaron objetos"

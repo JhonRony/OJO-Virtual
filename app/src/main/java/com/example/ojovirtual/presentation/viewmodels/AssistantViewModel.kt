@@ -41,15 +41,15 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
     private val _statusMessage = MutableStateFlow("")
     val statusMessage: StateFlow<String> = _statusMessage.asStateFlow()
 
-    // ✅ NUEVO: Estado para navegación
+    // Estado para navegación
     private val _navigationCommand = MutableStateFlow<NavigationCommand?>(null)
     val navigationCommand: StateFlow<NavigationCommand?> = _navigationCommand.asStateFlow()
 
-    // ✅ NUEVO: Estado para cerrar aplicación
+    // Estado para cerrar aplicación
     private val _closeAppCommand = MutableStateFlow(false)
     val closeAppCommand: StateFlow<Boolean> = _closeAppCommand.asStateFlow()
 
-    // ✅ NUEVO: Configuración de voz
+    // Configuración de voz
     private var _speechRate = MutableStateFlow(1.0f)
     val speechRate: StateFlow<Float> = _speechRate.asStateFlow()
 
@@ -69,7 +69,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         sensorHelper.startShakeDetection()
     }
 
-    // ✅ NUEVO: Cargar configuración de voz guardada
+    // Cargar configuración de voz guardada
     private fun loadVoiceSettings() {
         val sharedPreferences = getApplication<Application>().getSharedPreferences("voice_settings", 0)
         _speechRate.value = sharedPreferences.getFloat("speech_rate", 1.0f)
@@ -80,7 +80,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         textToSpeechUseCase.setSpeechPitch(_speechPitch.value)
     }
 
-    // ✅ NUEVO: Guardar configuración de voz
+    // Guardar configuración de voz
     private fun saveVoiceSettings() {
         val sharedPreferences = getApplication<Application>().getSharedPreferences("voice_settings", 0)
         sharedPreferences.edit().apply {
@@ -90,33 +90,33 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    // ✅ NUEVO: Configurar velocidad de voz
+    // Configurar velocidad de voz
     fun setSpeechRate(rate: Float) {
         _speechRate.value = rate
         textToSpeechUseCase.setSpeechRate(rate)
         saveVoiceSettings()
     }
 
-    // ✅ NUEVO: Configurar tono de voz
+    // Configurar tono de voz
     fun setSpeechPitch(pitch: Float) {
         _speechPitch.value = pitch
         textToSpeechUseCase.setSpeechPitch(pitch)
         saveVoiceSettings()
     }
 
-    // ✅ NUEVO: Obtener velocidad actual
+    // Obtener velocidad actual
     fun getSpeechRate(): Float = _speechRate.value
 
-    // ✅ NUEVO: Obtener tono actual
+    // Obtener tono actual
     fun getSpeechPitch(): Float = _speechPitch.value
 
-    // ✅ NUEVO: Restablecer configuración predeterminada
+    // Restablecer configuración predeterminada
     fun resetVoiceSettings() {
         setSpeechRate(1.0f)
         setSpeechPitch(1.0f)
     }
 
-    // ✅ NUEVO: Limpiar comando de cerrar app
+    // Limpiar comando de cerrar app
     fun clearCloseAppCommand() {
         _closeAppCommand.value = false
     }
@@ -185,7 +185,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
                 resetStatesAfterDelay()
             }
 
-            // ✅ CORREGIDO: Comandos de cámara PRIMERO (antes de "ayuda" genérico)
+            // Comandos de cámara PRIMERO (antes de "ayuda")
             lowerCommand.contains("ayuda a ver") || lowerCommand.contains("ayúdame a ver") -> {
                 speak("Activando cámara para ayudarte a ver toca la pantalla para capturar tu entorno")
                 _navigationCommand.value = NavigationCommand.NavigateToCamera
@@ -199,7 +199,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
                 resetStatesAfterDelay()
             }
 
-            // ✅ LEER texto
+            // LEER texto
             lowerCommand.contains("lee") || lowerCommand.contains("leer") ||
                     lowerCommand.contains("texto") -> {
                 speak("Activando lectura de texto")
@@ -274,7 +274,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         return objectName.ifEmpty { "objeto" }
     }
 
-    // ============ OBJECT DETECTION FUNCTIONS ============
+    // ============ FUNCIÓN DE DETECCIÓN DE OBJETOS ============
 
     fun detectObjects(bitmap: Bitmap) {
         viewModelScope.launch {
@@ -296,7 +296,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
                 speak("Error al detectar objetos")
             }
 
-            // ✅ IMPORTANTE: Resetear después de completar la detección
+            // IMPORTANTE: Resetear después de completar la detección
             resetDetectionStateAfterDelay()
         }
     }
@@ -336,7 +336,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
                 speak("Error en la búsqueda")
             }
 
-            // ✅ Resetear después de completar
+            // Resetear después de completar
             resetDetectionStateAfterDelay()
         }
     }
@@ -369,7 +369,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
                 speak("Error en reconocimiento de texto")
             }
 
-            // ✅ IMPORTANTE: Resetear después de completar el reconocimiento
+            // IMPORTANTE: Resetear después de completar el reconocimiento
             resetTextRecognitionStateAfterDelay()
         }
     }
@@ -384,12 +384,12 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         textToSpeechUseCase.stop()
     }
 
-    // ✅ NUEVO: Limpiar comando de navegación después de usarlo
+    // MÉTODO: Limpiar comando de navegación después de usarlo
     fun clearNavigationCommand() {
         _navigationCommand.value = null
     }
 
-    // ✅ NUEVOS MÉTODOS: Resetear estados después de un tiempo
+    // MÉTODO: Resetear estados después de un tiempo
     private fun resetStatesAfterDelay() {
         viewModelScope.launch {
             delay(3000) // 3 segundos
@@ -414,7 +414,7 @@ class AssistantViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    // ============ CLEANUP ============
+    // ============ LIMPIEZA ============
 
     override fun onCleared() {
         super.onCleared()
@@ -452,7 +452,7 @@ sealed class TextRecognitionState {
     data class Error(val message: String) : TextRecognitionState()
 }
 
-// ✅ NUEVO: Comandos de navegación
+// Comandos de navegación
 sealed class NavigationCommand {
     object NavigateToCamera : NavigationCommand()
     object NavigateToVoice : NavigationCommand()

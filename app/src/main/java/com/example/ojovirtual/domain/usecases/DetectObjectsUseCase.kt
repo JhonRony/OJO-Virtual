@@ -1,8 +1,8 @@
-package com.example.ojovirtual.domain.usecases  // ✅ TU PACKAGE
+package com.example.ojovirtual.domain.usecases
 
 import android.graphics.Bitmap
-import com.example.ojovirtual.data.repositories.DetectionResult         // ✅ TU PACKAGE
-import com.example.ojovirtual.data.repositories.ObjectDetectionRepository // ✅ TU PACKAGE
+import com.example.ojovirtual.data.repositories.DetectionResult
+import com.example.ojovirtual.data.repositories.ObjectDetectionRepository
 
 class DetectObjectsUseCase(private val objectDetectionRepository: ObjectDetectionRepository) {
 

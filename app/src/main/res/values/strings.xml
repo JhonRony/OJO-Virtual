@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OJOvirtual</string>  <!-- ✅ NOMBRE DE TU APP -->
+    <string name="app_name">OJOvirtual</string>  <!-- NOMBRE DE APP -->
 
     <!-- Mensajes de la app -->
     <string name="welcome_message">Bienvenido al Asistente de Accesibilidad. Di \'Ayuda\' para escuchar las funciones.</string>

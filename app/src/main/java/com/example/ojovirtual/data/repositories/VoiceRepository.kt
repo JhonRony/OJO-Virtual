@@ -1,4 +1,4 @@
-package com.example.ojovirtual.data.repositories  // ✅ TU PACKAGE
+package com.example.ojovirtual.data.repositories
 
 import android.content.Context
 import android.content.Intent

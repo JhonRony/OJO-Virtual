@@ -1,4 +1,4 @@
-package com.example.ojovirtual.presentation.ui  // ✅ TU PACKAGE
+package com.example.ojovirtual.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.ojovirtual.R  // ✅ TU PACKAGE
-import com.example.ojovirtual.databinding.FragmentVoiceBinding  // ✅ TU PACKAGE
-import com.example.ojovirtual.presentation.viewmodels.AssistantViewModel  // ✅ TU PACKAGE
-import com.example.ojovirtual.presentation.viewmodels.VoiceState  // ✅ TU PACKAGE
+import com.example.ojovirtual.R
+import com.example.ojovirtual.databinding.FragmentVoiceBinding
+import com.example.ojovirtual.presentation.viewmodels.AssistantViewModel
+import com.example.ojovirtual.presentation.viewmodels.VoiceState
 import kotlinx.coroutines.launch
 
 class VoiceFragment : Fragment() {

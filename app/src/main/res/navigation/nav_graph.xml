@@ -19,7 +19,7 @@
         android:label="Detección de Objetos"
         tools:layout="@layout/fragment_camera" />
 
-    <!-- ✅ NUEVO: Fragmento de Configuración -->
+    <!-- Fragmento de Configuración -->
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.ojovirtual.presentation.ui.SettingsFragment"

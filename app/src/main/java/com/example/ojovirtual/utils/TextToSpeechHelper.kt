@@ -14,7 +14,7 @@ class TextToSpeechHelper(private val context: Context) {
     private val _isReady = MutableStateFlow(false)
     val isReady: StateFlow<Boolean> = _isReady
 
-    // ✅ NUEVO: Variables para controlar velocidad y tono
+    // Variables para controlar velocidad y tono
     private var speechRate = 1.0f
     private var speechPitch = 1.0f
 
@@ -32,7 +32,7 @@ class TextToSpeechHelper(private val context: Context) {
                     tts?.setLanguage(Locale("es"))
                 }
 
-                // ✅ NUEVO: Aplicar configuración guardada
+                // Aplicar configuración guardada
                 tts?.setPitch(speechPitch)
                 tts?.setSpeechRate(speechRate)
 
@@ -49,7 +49,7 @@ class TextToSpeechHelper(private val context: Context) {
 
     fun speak(text: String, priority: Int = TextToSpeech.QUEUE_ADD) {
         if (_isReady.value) {
-            // ✅ NUEVO: Asegurar que la configuración se aplique antes de hablar
+            // Asegurar que la configuración se aplique antes de hablar
             tts?.setSpeechRate(speechRate)
             tts?.setPitch(speechPitch)
 
@@ -76,7 +76,7 @@ class TextToSpeechHelper(private val context: Context) {
         return tts?.isSpeaking ?: false
     }
 
-    // ✅ NUEVO: Configurar velocidad de voz
+    // Configurar velocidad de voz
     fun setSpeechRate(rate: Float) {
         speechRate = rate
         if (_isReady.value) {
@@ -84,7 +84,7 @@ class TextToSpeechHelper(private val context: Context) {
         }
     }
 
-    // ✅ NUEVO: Configurar tono de voz
+    // Configurar tono de voz
     fun setSpeechPitch(pitch: Float) {
         speechPitch = pitch
         if (_isReady.value) {
@@ -92,9 +92,9 @@ class TextToSpeechHelper(private val context: Context) {
         }
     }
 
-    // ✅ NUEVO: Obtener velocidad actual
+    // Obtener velocidad actual
     fun getSpeechRate(): Float = speechRate
 
-    // ✅ NUEVO: Obtener tono actual
+    // Obtener tono actual
     fun getSpeechPitch(): Float = speechPitch
 }

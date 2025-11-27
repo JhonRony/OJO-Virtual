@@ -6,11 +6,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.ojovirtual.R  // ✅ TU PACKAGE
-import com.example.ojovirtual.databinding.ActivityMainBinding  // ✅ TU PACKAGE
-import com.example.ojovirtual.presentation.viewmodels.AssistantViewModel  // ✅ TU PACKAGE
+import com.example.ojovirtual.R
+import com.example.ojovirtual.databinding.ActivityMainBinding
+import com.example.ojovirtual.presentation.viewmodels.AssistantViewModel
 import com.example.ojovirtual.presentation.viewmodels.NavigationCommand
-import com.example.ojovirtual.utils.PermissionsManager  // ✅ TU PACKAGE
+import com.example.ojovirtual.utils.PermissionsManager
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ✅ ACTUALIZADO: Navegación inferior con configuración
+        // Navegación inferior con configuración
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_voice -> {
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.nav_host_fragment, VoiceFragment())
                 .commit()
             currentFragment = "voice"
-            // ✅ Actualizar navegación inferior
+            // Actualizar navegación inferior
             binding.bottomNavigation.selectedItemId = R.id.navigation_voice
         }
     }
@@ -91,19 +91,19 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.nav_host_fragment, CameraFragment())
                 .commit()
             currentFragment = "camera"
-            // ✅ Actualizar navegación inferior
+            // Actualizar navegación inferior
             binding.bottomNavigation.selectedItemId = R.id.navigation_camera
         }
     }
 
-    // ✅ NUEVO: Mostrar fragmento de configuración
+    // Mostrar fragmento de configuración
     private fun showSettingsFragment() {
         if (currentFragment != "settings") {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.nav_host_fragment, SettingsFragment())
                 .commit()
             currentFragment = "settings"
-            // ✅ Actualizar navegación inferior
+            // Actualizar navegación inferior
             binding.bottomNavigation.selectedItemId = R.id.navigation_settings
         }
     }
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ✅ ACTUALIZADO: Manejar el botón back con configuración
+    // Manejar el botón back con configuración
     override fun onBackPressed() {
         when (currentFragment) {
             "camera", "settings" -> {
@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ✅ NUEVO: Observar comandos de navegación
+        // Observar comandos de navegación
         lifecycleScope.launch {
             viewModel.navigationCommand.collect { command ->
                 when (command) {
@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             Toast.makeText(this@MainActivity, R.string.permission_camera, Toast.LENGTH_SHORT).show()
                         }
-                        // ✅ Limpiar el comando después de usarlo
+                        // Limpiar el comando después de usarlo
                         viewModel.clearNavigationCommand()
                     }
                     is NavigationCommand.NavigateToVoice -> {
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ✅ NUEVO: Observar comando para cerrar aplicación
+        // Observar comando para cerrar aplicación
         lifecycleScope.launch {
             viewModel.closeAppCommand.collect { shouldClose ->
                 if (shouldClose) {

@@ -1,7 +1,7 @@
-package com.example.ojovirtual.domain.usecases  // ✅ TU PACKAGE
+package com.example.ojovirtual.domain.usecases
 
-import com.example.ojovirtual.data.repositories.VoiceRepository  // ✅ TU PACKAGE
-import com.example.ojovirtual.data.repositories.VoiceResult      // ✅ TU PACKAGE
+import com.example.ojovirtual.data.repositories.VoiceRepository
+import com.example.ojovirtual.data.repositories.VoiceResult
 import kotlinx.coroutines.flow.Flow
 
 class SpeechToTextUseCase(private val voiceRepository: VoiceRepository) {

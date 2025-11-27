@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
-    <!-- ✅ CORREGIDO: Indicador de estado - POSICIÓN MEJORADA -->
+    <!-- Indicador de estado -->
     <TextView
         android:id="@+id/status_text"
         android:layout_width="0dp"
